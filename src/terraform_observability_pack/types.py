@@ -1,7 +1,47 @@
 """Type definitions for terraform_observability_pack."""
 
 from dataclasses import dataclass, field
-from typing import Any, Optional
+from typing import Any, Optional, Dict, List
+
+
+@dataclass
+class TerraformResource:
+    """A discovered Terraform resource and its labels/tags.
+
+    Attributes:
+        type: Resource type (e.g., aws_instance).
+        name: Resource name (from Terraform config).
+        labels: Key-value labels/tags discovered on the resource.
+        address: Full Terraform address (e.g., module.foo.aws_instance.bar[0]).
+    Example::
+        TerraformResource(
+            type="aws_instance",
+            name="web",
+            labels={"Name": "web-1", "env": "prod"},
+            address="aws_instance.web[0]"
+        )
+    """
+    type: str
+    name: str
+    labels: Dict[str, str]
+    address: str
+
+
+@dataclass
+class TerraformParseResult:
+    """Result of parsing a Terraform plan or state file.
+
+    Attributes:
+        resources: List of discovered resources and their labels.
+        raw: The original parsed JSON input (for debugging).
+    Example::
+        TerraformParseResult(
+            resources=[TerraformResource(...)],
+            raw={...}
+        )
+    """
+    resources: List[TerraformResource]
+    raw: Any
 
 
 @dataclass
