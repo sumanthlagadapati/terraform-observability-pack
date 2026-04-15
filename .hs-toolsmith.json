@@ -1,0 +1,14 @@
+{
+  "hsToolsmith": true,
+  "title": "terraform-observability-pack",
+  "pitch": "Generate opinionated CloudWatch/Prometheus/Grafana monitoring modules from Terraform tags and outputs.",
+  "language": "python",
+  "category": "Developer Tools",
+  "keyFeatures": [
+    "Parse Terraform plan/state to discover resources and labels",
+    "Emit ready-to-apply CloudWatch alarms and dashboard JSON",
+    "Generate Prometheus scrape configs and Grafana dashboard templates",
+    "Tag-to-alert-rule mapping with override files"
+  ],
+  "targetUsers": "Platform/DevOps engineers who want standardized monitoring dashboards and alerts from Terraform-managed AWS/Kubernetes infrastructure."
+}
