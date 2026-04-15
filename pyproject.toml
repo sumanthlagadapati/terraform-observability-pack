@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "terraform_observability_pack"
+version = "0.1.0"
+description = "Generate opinionated CloudWatch/Prometheus/Grafana monitoring modules from Terraform tags and outputs."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Typing :: Typed",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "black>=24.0",
+    "mypy>=1.8",
+    "ruff>=0.3",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/terraform_observability_pack"]
+
+[tool.black]
+line-length = 88
+target-version = ["py39"]
+
+[tool.mypy]
+strict = true
+python_version = "3.9"
+
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
